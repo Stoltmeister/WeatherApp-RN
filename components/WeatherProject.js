@@ -8,6 +8,8 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, TextInput } from "react-native";
+import Forecast from "./Forecast";
+import OpenWeatherMap from "../open_weather_map";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -24,13 +26,28 @@ export default class WeatherProject extends Component<Props> {
   }
 
   handleTextChange = event => {
-    this.setState({ zip: event.nativeEvent.text });
+    let zip = event.nativeEvent.text;
+    OpenWeatherMap.fetchForecast(zip).then(forecast => {
+      console.log(forecast);
+      this.setState({ forecast: forecast });
+    });
   };
 
   render() {
+    let content = null;
+    if (this.state.forecast !== null) {
+      content = (
+        <Forecast
+          main={this.state.forecast.main}
+          description={this.state.forecast.description}
+          temp={this.state.forecast.temp}
+        />
+      );
+    }
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Your input {this.state.zip}</Text>
+        {content}
         <TextInput
           style={styles.input}
           onSubmitEditing={this.handleTextChange}

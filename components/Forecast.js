@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 class Forecast extends Component {
   render() {
@@ -8,7 +9,7 @@ class Forecast extends Component {
         <Text style={styles.mainText}>
           Current Conditions: {this.props.description}
         </Text>
-        <Text style={styles.bigText}>{this.props.temp}</Text>
+        <Text style={styles.bigText}>{this.props.temp}°F</Text>
       </View>
     );
   }
