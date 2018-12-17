@@ -103,6 +103,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 3
   },
-  zipCode: { flex: 1, flexBasis: 1, width: 50 },
-  mainText: { color: "#FFFFFF", height: 40 }
+  zipCode: { flex: 1, flexBasis: 1, width: 50, height: 40, padding: 0 },
+  mainText: {
+    color: "#FFFFFF",
+    fontSize: 15
+  }
 });
